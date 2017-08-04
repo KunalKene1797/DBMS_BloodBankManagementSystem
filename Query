@@ -1,0 +1,46 @@
+create table doctor(
+    doc_id varchar(10) unique not null,
+    doc_name varchar(20) not null,
+    doc_experience int,
+    primary key (doc_id)
+    );
+    
+create table blood(
+    bloodgroup varchar(5) unique not null,
+    quantity int not null,
+    primary key (bloodgroup)
+    );
+  
+create table donor(
+    don_id varchar(10) unique not null,
+    don_name varchar(20) not null,
+    don_age int not null,
+    don_weight int not null,
+    don_bloodgroup varchar(5) references blood(bloodgroup) not null,
+    don_contact int not null,
+    don_address varchar(50),
+    primary key (don_id),
+    check (don_age>18),
+    check (don_weight>60)
+    );
+    
+create table patient(
+    pat_id varchar(10) unique not null,
+    pat_name varchar(20) not null,
+    pat_age int not null,
+    pat_bloodgroup varchar(5) not null references blood(bloodgroup),
+    pat_contact int not null,
+    pat_address varchar(50),
+    primary key (pat_id)
+    );
+    
+
+select * from doctor;
+select * from patient;
+select * from blood;
+select * from donor;
+
+drop table doctor;
+drop table patient;
+drop table blood;
+drop table donor;

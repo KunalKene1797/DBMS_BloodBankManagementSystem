@@ -1,6 +1,7 @@
+#Create Schemas
 create table doctor(
     doc_id varchar(10) unique not null,
-    doc_name varchar(20) not null,
+    doc_name varchar(50) not null,
     doc_experience int,
     primary key (doc_id)
     );
@@ -13,7 +14,7 @@ create table blood(
   
 create table donor(
     don_id varchar(10) unique not null,
-    don_name varchar(20) not null,
+    don_name varchar(50) not null,
     don_age int not null,
     don_weight int not null,
     don_bloodgroup varchar(5) references blood(bloodgroup) not null,
@@ -26,21 +27,37 @@ create table donor(
     
 create table patient(
     pat_id varchar(10) unique not null,
-    pat_name varchar(20) not null,
+    pat_name varchar(50) not null,
     pat_age int not null,
     pat_bloodgroup varchar(5) not null references blood(bloodgroup),
     pat_contact int not null,
     pat_address varchar(50),
     primary key (pat_id)
     );
-    
 
+#Insertion of Data Elements
+insert into doctor values (001, 'Dr.Emilia Clark', 6);
+insert into doctor values (002, 'Dr.Roger Federer', 12);
+insert into doctor values (003, 'Dr.Sheldon Cooper', 9);
+insert into doctor values (004, 'Dr.Kunal Nayyar', 8);
+insert into doctor values (005, 'Dr.Leonard Holfstader', 8);
+
+insert into blood values ('A+', 0);
+insert into blood values ('A-', 0);
+insert into blood values ('B+', 0);
+insert into blood values ('B-', 0);
+insert into blood values ('AB+', 0);
+insert into blood values ('AB-', 0);
+insert into blood values ('O+', 0);
+insert into blood values ('O-', 0);
+
+#Display Table
 select * from doctor;
 select * from patient;
 select * from blood;
 select * from donor;
-
+#Delete Table
+drop table blood;
 drop table doctor;
 drop table patient;
-drop table blood;
 drop table donor;
